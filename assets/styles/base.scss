@@ -1,0 +1,55 @@
+.font-heavy {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+span {
+  a {
+    @apply text-green;
+  }
+}
+
+li {
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+#content {
+  margin-left: 2.5rem /* 40px */;
+  margin-right: 2.5rem /* 40px */;
+  padding-top: 5rem /* 80px */;
+  overflow: hidden;
+}
+
+/**
+*   Daisy UI override. The default drawer config felt weird.
+**/
+
+.drawer-side {
+  max-height: unset !important;
+}
+
+.drawer-toggle {
+  position: fixed;
+}
+
+.label {
+  padding-left: 0;
+  padding-top: 0;
+}
+
+/**
+*   WalletConnect override. 
+**/
+
+.walletconnect-modal__mobile__toggle {
+  a {
+    @apply text-blue-connect;
+  }
+}
+.walletconnect-search__input {
+  color: rgba(60, 66, 82, 0.6);
+}
