@@ -12,6 +12,9 @@ export default defineNuxtConfig({
   },
   modules: ["@nuxtjs/tailwindcss"],
   pages: true,
+  experimental: {
+    writeEarlyHints: false,
+  },
   runtimeConfig: {
     public: {
       apiBase: "https://lbrygen.xyz/api",
