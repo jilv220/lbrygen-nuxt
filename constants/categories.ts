@@ -4,38 +4,38 @@ import { ISideBarItem } from "./interfaces";
 const featured = {
   link: "$/featured",
   icon: svgs.featuredIcon,
-  label: "Featured",
+  label: "featured",
 };
 const education = {
   link: "$/education",
   icon: svgs.educationIcon,
-  label: "Education",
+  label: "education",
 };
 const gaming = {
   link: "$/gaming",
   icon: svgs.gamingIcon,
-  label: "Gaming",
+  label: "gaming",
 };
 const tech = {
   link: "$/tech",
   icon: svgs.chipIcon,
-  label: "Tech",
+  label: "tech",
 };
 const news = {
   link: "$/news",
   icon: svgs.newsIcon,
-  label: "News",
+  label: "news",
 };
 
 const lbry = {
   link: "lbry",
   icon: svgs.newsIcon,
-  label: "Lbry",
+  label: "lbry",
 };
 const vtuber = {
   link: "vtuber",
   icon: svgs.homeIcon,
-  label: "Vtuber",
+  label: "vtuber",
 };
 
 const categories: Array<ISideBarItem> = [
