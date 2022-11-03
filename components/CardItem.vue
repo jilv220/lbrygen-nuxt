@@ -1,5 +1,6 @@
 <script setup>
 import { THUMBNAIL_OPTIMIZE } from "@/constants/env";
+import { parseLBRYURL } from "@/utils/StringUtils";
 
 const props = defineProps({
   thumbnail: Object,
@@ -26,18 +27,26 @@ onBeforeMount(() => {
 <template>
   <div class="flex flex-col">
     <div class="avatar inline-block">
-      <!-- <NuxtLink :to="{ name: 'stream', query: { curl: curl } }"> -->
-      <div id="card-thumbnail" class="rounded">
-        <TriFallbackImg
-          v-if="thumbnail"
-          :originURI="optimizedThumbnail"
-          :backupURI="backupThumbnail"
-          fallbackURI="spaceman.png"
-        >
-        </TriFallbackImg>
-        <img v-else src="@/assets/imgs/spaceman.png" />
-      </div>
-      <!-- </NuxtLink> -->
+      <NuxtLink
+        :to="{
+          name: 'channel-stream',
+          params: {
+            channel: parseLBRYURL(curl)[0],
+            stream: parseLBRYURL(curl)[1],
+          },
+        }"
+      >
+        <div id="card-thumbnail" class="rounded">
+          <TriFallbackImg
+            v-if="thumbnail"
+            :originURI="optimizedThumbnail"
+            :backupURI="backupThumbnail"
+            fallbackURI="spaceman.png"
+          >
+          </TriFallbackImg>
+          <img v-else src="@/assets/imgs/spaceman.png" />
+        </div>
+      </NuxtLink>
     </div>
 
     <div id="card-claim-info" class="flex-1 grid">

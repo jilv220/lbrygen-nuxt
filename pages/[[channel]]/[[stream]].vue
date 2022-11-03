@@ -20,7 +20,6 @@ let claimUrl = LBRY_PREFIX + params.channel + "/" + params.stream;
 
 let player: MaybePlyr = undefined;
 let polling: MaybeTimer = undefined;
-let downloadUrl = "";
 let shouldExpand = true;
 
 // Maybe should make a state for this ...
@@ -29,6 +28,7 @@ let shortUrl = ref("");
 let title = ref("");
 let desc = ref("");
 let streamUrl = ref("");
+let downloadUrl = ref("");
 let mimeType = ref("");
 
 // Should use reactive and define interfaces for them
@@ -81,7 +81,7 @@ onBeforeMount(async () => {
 
     // Setup download
     const blob = streamUrl?.value.split("/").pop();
-    downloadUrl = `${API_PROD}/download/${blob}`;
+    downloadUrl.value = `${API_PROD}/download/${blob}`;
 
     let relatedRes = await getContent(
       "tag",
