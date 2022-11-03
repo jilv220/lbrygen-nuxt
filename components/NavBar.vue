@@ -17,13 +17,29 @@
           />
         </svg>
       </label>
-      <div id="lbry-logo" class="mr-4 h-6" @click="navigateTo('home')">
+      <div id="lbry-logo" class="mr-4 h-6" @click="navigateTo('/')">
         <img
           class="h-full w-full"
           alt="Lbry logo"
           src="~/assets/imgs/lbrygen_logo.png"
         />
       </div>
+    </div>
+
+    <div class="flex justify-between w-1/3">
+      <div class="flex-1 md:hidden">
+        <SearchBar></SearchBar>
+      </div>
+
+      <!-- <div class="flex">
+        <div id="search-modal-wrapper" class="lg:hidden">
+          <SearchModal></SearchModal>
+        </div>
+
+        <div class="pr-5 md:pr-4 md:pl-4">
+          <FilterModal></FilterModal>
+        </div>
+      </div> -->
     </div>
   </nav>
 </template>
