@@ -5,6 +5,7 @@ import InfiniteScroll from "@/components/InfiniteScroll.vue";
 import { onBeforeMount, ref } from "vue";
 import { useRouter } from "vue-router";
 import { fetchCategoryData } from "@/apis/api";
+import { upperFirst } from "lodash-es";
 
 let items = ref();
 let pageNum = 6;
@@ -14,6 +15,11 @@ let categoryName = router.currentRoute.value.params?.category as string;
 let currRoute = "$/" + categoryName;
 let currIcon = categories.filter((category) => category.link === currRoute)[0]
   .icon;
+
+// Setup metadata
+useHead({
+  title: upperFirst(categoryName),
+});
 
 async function infiniteHandler() {
   const sourceData = await fetchCategoryData(categoryName, "y", pageNum);

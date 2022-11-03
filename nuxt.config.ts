@@ -10,14 +10,21 @@ export default defineNuxtConfig({
       postcssOptions: require("./postcss.config.js"),
     },
   },
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/robots"],
   pages: true,
+  app: {
+    head: {
+      title: "Lbrygen",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Alternative frontend for LBRY and Odysee written in Nuxt3. It is up just in case that Odysee is down!",
+        },
+      ],
+    },
+  },
   experimental: {
     writeEarlyHints: false,
-  },
-  runtimeConfig: {
-    public: {
-      apiBase: "https://lbrygen.xyz/api",
-    },
   },
 });

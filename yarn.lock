@@ -527,6 +527,14 @@
     vite-plugin-checker "^0.5.1"
     vue-bundle-renderer "^0.4.4"
 
+"@nuxtjs/robots@^3.0.0-2":
+  version "3.0.0-2"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/robots/-/robots-3.0.0-2.tgz#84d73121932f65a9464bc7907939008b83f648bd"
+  integrity sha512-UuMrmxReyfhZtrMbocS0pVYKma1sxPKw30F7z2pmE9dPs1CW8rU3gtAH3xvScwWAKgepkwXPvt8UsB+QL/EGKg==
+  dependencies:
+    "@nuxt/kit" "^3.0.0-rc.12"
+    h3 "^0.8.6"
+
 "@nuxtjs/tailwindcss@^6.1.2":
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-6.1.2.tgz#c2e90110837f2a8de55fa541830ec99416277cc0"
@@ -2371,7 +2379,7 @@ gzip-size@^7.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-h3@^0.8.1, h3@^0.8.4, h3@^0.8.5:
+h3@^0.8.1, h3@^0.8.4, h3@^0.8.5, h3@^0.8.6:
   version "0.8.6"
   resolved "https://registry.yarnpkg.com/h3/-/h3-0.8.6.tgz#8095ef998fe14769b87170b7c8b68ba9c54973d5"
   integrity sha512-CSWNOKa3QGo67rFU2PhbFTp0uPJtilNji2Z0pMiSRQt3+OkIW0u3E1WMJqIycLqaTgb9JyFqH/S4mcTyyGtvyQ==
