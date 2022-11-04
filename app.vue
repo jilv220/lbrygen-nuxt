@@ -31,7 +31,7 @@ onBeforeMount(() => {
 
       <div class="drawer-side h-full">
         <label for="my-drawer" class="drawer-overlay"></label>
-        <nav id="drawer-sidebar" class="bg-neutral relative">
+        <nav id="drawer-sidebar" class="bg-neutral fixed">
           <SideBar></SideBar>
         </nav>
       </div>

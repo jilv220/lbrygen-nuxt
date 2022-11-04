@@ -1,3 +1,5 @@
+import { SITENAME, SITELINK, HOMEDESC } from "./constants/strings";
+
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   css: [
@@ -14,7 +16,7 @@ export default defineNuxtConfig({
   pages: true,
   app: {
     head: {
-      title: "Lbrygen",
+      title: SITENAME,
       viewport:
         "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
       meta: [
@@ -25,49 +27,42 @@ export default defineNuxtConfig({
         // title
         {
           property: "og:title",
-          content: "Lbrygen",
+          content: SITENAME,
         },
         {
           name: "twitter:title",
-          content: "Lbrygen",
+          content: SITENAME,
         },
         // url
         {
           property: "og:url",
-          content: "https://lbrygen.xyz",
+          content: SITELINK,
         },
         {
           name: "twitter:url",
-          content: "https://lbrygen.xyz",
+          content: SITELINK,
         },
         // description
         {
           name: "description",
-          content:
-            "Alternative frontend for LBRY and Odysee written in Nuxt3. It is up just in case that Odysee is down!",
+          content: HOMEDESC,
         },
         {
           property: "og:description",
-          content:
-            "Alternative frontend for LBRY and Odysee written in Nuxt3. It is up just in case that Odysee is down!",
+          content: HOMEDESC,
         },
         {
           name: "twitter:description",
-          content:
-            "Alternative frontend for LBRY and Odysee written in Nuxt3. It is up just in case that Odysee is down!",
+          content: HOMEDESC,
         },
         // OG ext
         {
           property: "og:sitename",
-          content: "Lbrygen",
+          content: SITENAME,
         },
         {
           property: "og:type",
           content: "website",
-        },
-        {
-          property: "og:sitename",
-          content: "Lbrygen",
         },
         // Twitter ext
         {
@@ -78,7 +73,7 @@ export default defineNuxtConfig({
       link: [
         {
           rel: "canonical",
-          href: "https://lbrygen.xyz",
+          href: SITELINK,
         },
       ],
     },
