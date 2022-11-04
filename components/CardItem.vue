@@ -36,7 +36,7 @@ onBeforeMount(() => {
           },
         }"
       >
-        <div id="card-thumbnail" class="rounded">
+        <div class="rounded card-thumbnail">
           <TriFallbackImg
             v-if="thumbnail"
             :originURI="optimizedThumbnail"
@@ -49,7 +49,7 @@ onBeforeMount(() => {
       </NuxtLink>
     </div>
 
-    <div id="card-claim-info" class="flex-1 grid">
+    <div class="flex-1 grid card-claim-info">
       <label id="card-title">
         <slot name="center"></slot>
       </label>
@@ -74,7 +74,7 @@ onBeforeMount(() => {
 #search-result-rear {
   align-content: center;
 }
-#card-claim-info {
+.card-claim-info {
   width: 300px;
   text-align: start;
   align-self: flex-start;
@@ -87,7 +87,7 @@ onBeforeMount(() => {
     font-weight: 700;
   }
 }
-#card-claim-info .flex-x-start {
+.card-claim-info .flex-x-start {
   .avatar {
     width: 2.1rem;
     height: 2.1rem;
@@ -109,7 +109,7 @@ onBeforeMount(() => {
   padding-top: 12px;
   @apply text-sm font-semibold;
 }
-#card-thumbnail {
+.card-thumbnail {
   width: 100%;
   height: 100%;
   aspect-ratio: 16/9;
@@ -131,7 +131,7 @@ onBeforeMount(() => {
     margin-right: 1rem;
     margin-left: 1rem;
   }
-  #card-claim-info {
+  .card-claim-info {
     width: auto;
   }
   #card-title {

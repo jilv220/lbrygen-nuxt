@@ -42,7 +42,7 @@ onMounted(() => {
       </label>
 
       <LGAvatarLabel
-        id="streaming-avatar-label"
+        class="streaming-avatar-label"
         :showAvatar="showAvatar"
         :avatar="avatar"
       >
@@ -76,6 +76,16 @@ onMounted(() => {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+.streaming-avatar-label > .flex {
+  .avatar {
+    width: 2.1rem;
+    height: 2.1rem;
+    cursor: pointer;
+  }
+  #channel-title {
+    cursor: pointer;
+  }
+}
 #thumbnail {
   width: 13.75rem;
   height: calc(13.75rem / 1.7);
@@ -98,7 +108,7 @@ onMounted(() => {
   #streaming-url {
     -webkit-line-clamp: 2;
   }
-  #streaming-avatar-label {
+  .streaming-avatar-label {
     #base-label {
       @apply line-clamp-1;
     }
