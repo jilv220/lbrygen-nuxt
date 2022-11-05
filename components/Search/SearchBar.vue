@@ -1,7 +1,10 @@
 <script setup lang="ts">
 let searchContent = ref("");
+let router = useRouter();
 
-function gotoSearchPage() {}
+function navigateToSearchPage() {
+  router.replace({ path: "/$/search", query: { q: searchContent.value } });
+}
 
 function resetSearchContent() {
   searchContent.value = "";
@@ -32,8 +35,9 @@ function resetSearchContent() {
       placeholder="Search some contents..."
       autocomplete="off"
       @keyup.enter="
-        gotoSearchPage();
+        navigateToSearchPage();
         ($event.target as HTMLElement).blur();
+        resetSearchContent();
       "
     />
 

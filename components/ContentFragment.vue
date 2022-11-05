@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import CardItem from "./CardItem.vue";
-import { upperFirst } from "lodash-es";
+import { upperFirst, last } from "lodash-es";
 import { parseLBRYURL } from "@/utils/StringUtils";
 
 const props = defineProps({
@@ -9,39 +9,33 @@ const props = defineProps({
   items: Array<any>, // need to define interface
 });
 
-let layout = ref(true);
+// Default ListLayout for searches
+let layout = props.contentLabel === "search" ? ref(false) : ref(true);
 
 function changeLayout() {
-  // const layout = document.getElementById("layout");
-  // layout.style.display = "unset";
-
-  // const cardClaims = document.getElementsByClassName("flex flex-col");
-  // for (let cardClaim of cardClaims) {
-  //   let cardClaimEle = cardClaim as HTMLElement;
-  //   cardClaimEle.style.flexDirection = "row";
-  // }
-
-  // const thumbnails = document.getElementsByClassName("card-thumbnail");
-  // for (let thumbnail of thumbnails) {
-  //   let thumbnailEle = thumbnail as HTMLElement;
-  //   thumbnailEle.style.width = "14.5rem";
-  //   thumbnailEle.style.height = "calc(14.5rem / 1.7)";
-  // }
   layout.value = !layout.value;
-  console.log(layout.value);
+}
+
+function isLastTag(tag, tags) {
+  return tag === last(tags);
 }
 </script>
 
 <template>
-  <label class="label justify-start pb-3">
-    <span v-html="icon" class="mr-2"></span>
-    <span class="label-text text-lg font-bold">
-      {{ upperFirst(contentLabel) }}</span
-    >
-  </label>
+  <div v-if="contentLabel !== 'search'">
+    <label class="label justify-start pb-3">
+      <span v-html="icon" class="mr-2"></span>
+      <span class="label-text text-lg font-bold">
+        {{ upperFirst(contentLabel) }}</span
+      >
+    </label>
 
-  <div class="btn-group flex justify-start">
-    <button class="btn" @click="changeLayout()">Change Layout</button>
+    <div
+      v-if="$router.currentRoute.value.path !== '/'"
+      class="btn-group flex justify-start mb-8"
+    >
+      <button class="btn" @click="changeLayout()">Change Layout</button>
+    </div>
   </div>
 
   <!-- GridLayout -->
@@ -82,6 +76,7 @@ function changeLayout() {
       <SearchItem
         :thumbnail="item.value.thumbnail"
         :avatar="item.signing_channel"
+        :timestamp="item.timestamp"
       >
         <template v-slot:center>
           <NuxtLink
@@ -104,17 +99,18 @@ function changeLayout() {
         <template v-slot:rear>
           <div v-if="item.value.tags" id="tag-group" class="flex">
             <div v-for="tag in item.value.tags.slice(0, 3)" :key="tag">
-              <!-- <router-link :to="tagRoutes(tag)">
+              <NuxtLink
+                :to="{ path: '/$/search', query: { q: tag }, force: true }"
+              >
                 <div
-                  v-if="!isLastTag(tag, item.value.tags.slice(0, 3))"
+                  :class="{
+                    'tag-spacing': !isLastTag(tag, item.value.tags.slice(0, 3)),
+                  }"
                   class="badge tag-spacing rounded-md bg-secondary"
                 >
                   {{ tag }}
                 </div>
-                <div v-else class="badge rounded-md bg-secondary">
-                  {{ tag }}
-                </div>
-              </router-link> -->
+              </NuxtLink>
             </div>
           </div>
         </template>
@@ -122,3 +118,15 @@ function changeLayout() {
     </li>
   </ul>
 </template>
+
+<style lang="scss">
+.tag-spacing {
+  margin: 0 6.4px 0 0;
+}
+
+.badge {
+  @apply hover:bg-green;
+  @apply border-0;
+  cursor: pointer;
+}
+</style>

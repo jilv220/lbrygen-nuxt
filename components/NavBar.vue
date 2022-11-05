@@ -31,15 +31,15 @@
         <SearchBar></SearchBar>
       </div>
 
-      <!-- <div class="flex">
+      <div class="flex">
         <div id="search-modal-wrapper" class="lg:hidden">
           <SearchModal></SearchModal>
         </div>
 
-        <div class="pr-5 md:pr-4 md:pl-4">
+        <!-- <div class="pr-5 md:pr-4 md:pl-4">
           <FilterModal></FilterModal>
-        </div>
-      </div> -->
+        </div> -->
+      </div>
     </div>
   </nav>
 </template>

@@ -4,38 +4,64 @@ import ContentFragment from "@/components/ContentFragment.vue";
 import InfiniteScroll from "@/components/InfiniteScroll.vue";
 import { onBeforeMount, ref } from "vue";
 import { useRouter } from "vue-router";
-import { fetchCategoryData } from "@/apis/api";
+import { fetchCategoryData, getContent } from "@/apis/api";
 import { upperFirst } from "lodash-es";
 
 let items = ref();
-let pageNum = 6;
+let isSearch = false;
 
 const router = useRouter();
 let categoryName = router.currentRoute.value.params?.category as string;
+
 let currRoute = "$/" + categoryName;
-let currIcon = categories.filter((category) => category.link === currRoute)[0]
-  .icon;
+let currIcon;
+
+if (categoryName !== "search") {
+  currIcon = categories.filter((category) => category.link === currRoute)[0]
+    .icon;
+} else {
+  isSearch = true;
+}
+
+let pageNum = isSearch ? 2 : 6;
+let searchContent = isSearch ? router.currentRoute.value.query?.q : undefined;
 
 // Setup metadata
 useHead({
   title: upperFirst(categoryName),
 });
 
-async function infiniteHandler() {
-  const sourceData = await fetchCategoryData(categoryName, "y", pageNum);
-  const moreItems = sourceData?.result?.items;
-  items?.value?.push(...moreItems);
-  pageNum += 1;
-}
-
 onBeforeMount(async () => {
   try {
-    let sourceData = await fetchCategoryData(categoryName);
+    let sourceData = await fetchSearchOrCategoryData();
     items.value = sourceData?.result?.items;
   } catch (err) {
     console.log(err);
   }
 });
+
+watch(
+  () => router.currentRoute.value.query.q,
+  async (value) => {
+    searchContent = value;
+    let sourceData = await fetchSearchOrCategoryData();
+    items.value = sourceData?.result?.items;
+    window.scrollTo({ top: 0, left: 0 });
+  }
+);
+
+async function fetchSearchOrCategoryData(pageNum: number = 1) {
+  return isSearch
+    ? await getContent("text", "video", searchContent, pageNum)
+    : await fetchCategoryData(categoryName, "y", pageNum);
+}
+
+async function infiniteHandler() {
+  const sourceData = await fetchSearchOrCategoryData(pageNum);
+  const moreItems = sourceData?.result?.items;
+  items?.value?.push(...moreItems);
+  pageNum += 1;
+}
 </script>
 
 <template>

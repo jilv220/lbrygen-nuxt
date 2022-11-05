@@ -75,7 +75,6 @@ onBeforeMount(() => {
   align-content: center;
 }
 .card-claim-info {
-  width: 300px;
   text-align: start;
   align-self: flex-start;
   #card-title {
@@ -136,11 +135,6 @@ onBeforeMount(() => {
   }
   #card-title {
     -webkit-line-clamp: 2;
-  }
-  #card-avatar-label {
-    #base-label {
-      @apply line-clamp-1;
-    }
   }
 }
 </style>

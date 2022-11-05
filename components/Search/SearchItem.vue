@@ -4,6 +4,7 @@ import { THUMBNAIL_OPTIMIZE } from "@/constants/env";
 const props = defineProps({
   thumbnail: Object,
   avatar: Object,
+  timestamp: Number,
   showAvatar: {
     default: true,
     type: Boolean,
@@ -37,7 +38,7 @@ onMounted(() => {
     </div>
 
     <div id="streaming-url-wrapper" class="flex-1 grid">
-      <label id="streaming-url">
+      <label class="search-title">
         <slot name="center"></slot>
       </label>
 
@@ -45,6 +46,7 @@ onMounted(() => {
         class="streaming-avatar-label"
         :showAvatar="showAvatar"
         :avatar="avatar"
+        :timestamp="timestamp"
       >
       </LGAvatarLabel>
     </div>
@@ -65,11 +67,11 @@ onMounted(() => {
   width: 300px;
   text-align: start;
   align-self: flex-start;
-  font-size: 1rem;
-  font-weight: 700;
 }
-#streaming-url {
+.search-title {
   cursor: pointer;
+  font-weight: 700;
+
   /* Standard way to clamp */
   overflow: hidden;
   display: -webkit-box;
@@ -77,19 +79,21 @@ onMounted(() => {
   -webkit-box-orient: vertical;
 }
 .streaming-avatar-label > .flex {
+  cursor: pointer;
   .avatar {
     width: 2.1rem;
     height: 2.1rem;
-    cursor: pointer;
   }
   #channel-title {
-    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
   }
 }
 #thumbnail {
   width: 13.75rem;
   height: calc(13.75rem / 1.7);
 }
+
 /* md screen */
 @media (max-width: 960px) {
   #search-result-rear {
@@ -105,11 +109,11 @@ onMounted(() => {
     margin-right: 1rem;
     margin-left: 1rem;
   }
-  #streaming-url {
+  .search-title {
     -webkit-line-clamp: 2;
   }
   .streaming-avatar-label {
-    #base-label {
+    #base-label > #channel-title {
       @apply line-clamp-1;
     }
   }
