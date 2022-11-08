@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import random from "lodash-es/random";
-import plyrHelper from "~~/libs/plyrHelper";
+import plyrHelper from "@/libs/plyrHelper";
 
 import {
   LBRY_PREFIX,
   API_PROD,
   VIDEO_TYPES,
   AUDIO_TYPES,
-} from "~~/constants/env";
+} from "@/constants/env";
 import { resolveClaimSingle, getStreamByUrl, getContent } from "@/apis/api";
 import { MaybePlyr, MaybeTimer } from "@/types/StreamTypes";
 import { linkify } from "@/utils/ReUtils";

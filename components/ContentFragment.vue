@@ -12,6 +12,13 @@ const props = defineProps({
 // Default ListLayout for searches
 let layout = props.contentLabel === "search" ? ref(false) : ref(true);
 
+const noLabelContent = ["search", undefined];
+const noLayoutTogglePath = ["/", "/$/search"];
+
+// onBeforeMount(() => {
+//   console.log(props.contentLabel);
+// });
+
 function changeLayout() {
   layout.value = !layout.value;
 }
@@ -22,8 +29,11 @@ function isLastTag(tag, tags) {
 </script>
 
 <template>
-  <div v-if="contentLabel !== 'search'">
-    <label class="label justify-start pb-3">
+  <div>
+    <label
+      v-if="!noLabelContent.includes(contentLabel)"
+      class="label justify-start pb-3"
+    >
       <span v-html="icon" class="mr-2"></span>
       <span class="label-text text-lg font-bold">
         {{ upperFirst(contentLabel) }}</span
@@ -31,7 +41,7 @@ function isLastTag(tag, tags) {
     </label>
 
     <div
-      v-if="$router.currentRoute.value.path !== '/'"
+      v-if="!noLayoutTogglePath.includes($router.currentRoute.value.path)"
       class="btn-group flex justify-start mb-8"
     >
       <button class="btn" @click="changeLayout()">Change Layout</button>

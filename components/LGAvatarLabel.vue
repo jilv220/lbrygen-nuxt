@@ -1,6 +1,7 @@
 <script setup>
 import { AVATAR_OPTIMIZE } from "@/constants/env";
 import { DateTime } from "luxon";
+import { parseLBRYURL } from "@/utils/StringUtils";
 
 const props = defineProps({
   avatar: Object,
@@ -37,49 +38,38 @@ onBeforeMount(() => {
     relativeDT.value = DateTime.fromSeconds(props.timestamp).toRelative();
   }
 });
-
-function channelRoutes() {
-  return {
-    name: "search",
-    query: {
-      q: this.avatar?.name,
-      qt: "channel",
-      st: "video",
-    },
-  };
-}
 </script>
 
 <template>
   <BaseAvatarLabel :showAvatar="showAvatar" :showRear="showRear">
     <template v-slot:avatar>
-      <!-- <router-link :to="channelRoutes()"> -->
-      <div v-if="avatar?.value?.thumbnail" id="channel-avatar">
-        <TriFallbackImg
-          :originURI="optimizedThumbnail"
-          :backupURI="backupThumbnail"
-          fallbackURI="spaceman.png"
-        >
-        </TriFallbackImg>
-      </div>
-      <img v-else src="@/assets/imgs/spaceman.png" />
-      <!-- </router-link> -->
+      <NuxtLink :to="`/${parseLBRYURL(props.avatar?.short_url)[0]}`">
+        <div v-if="avatar?.value?.thumbnail" id="channel-avatar">
+          <TriFallbackImg
+            :originURI="optimizedThumbnail"
+            :backupURI="backupThumbnail"
+            fallbackURI="spaceman.png"
+          >
+          </TriFallbackImg>
+        </div>
+        <img v-else src="@/assets/imgs/spaceman.png" />
+      </NuxtLink>
     </template>
     <template v-slot:label>
-      <!-- <router-link id="channel-title" :to="channelRoutes()"> -->
-      <div id="channel-title">
-        <div v-if="avatar?.value?.title">
-          {{ avatar.value.title }}
+      <NuxtLink :to="`/${parseLBRYURL(props.avatar?.short_url)[0]}`">
+        <div id="channel-title">
+          <div v-if="avatar?.value?.title">
+            {{ avatar.value.title }}
+          </div>
+          <div v-else-if="backupTitle">
+            {{ backupTitle.replace("@", "") }}
+          </div>
+          <div v-else>Anonymous</div>
+          <div id="channel-name" v-if="showName">
+            {{ avatar?.name }}
+          </div>
         </div>
-        <div v-else-if="backupTitle">
-          {{ backupTitle.replace("@", "") }}
-        </div>
-        <div v-else>Anonymous</div>
-        <div id="channel-name" v-if="showName">
-          {{ avatar?.name }}
-        </div>
-      </div>
-      <!-- </router-link> -->
+      </NuxtLink>
       <div class="text-sm">
         {{ relativeDT }}
       </div>

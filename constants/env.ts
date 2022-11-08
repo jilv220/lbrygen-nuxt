@@ -2,6 +2,8 @@ export const API_PROD = "https://lbrygen.xyz/api";
 export const API_BASE = "https://lbrygen.xyz/";
 export const STREAM_IP = "http://127.0.0.1:5280/";
 
+export const NO_OPTIMIZE =
+  "https://thumbnails.odycdn.com/optimize/quality:85/plain/";
 export const THUMBNAIL_OPTIMIZE =
   "https://thumbnails.odycdn.com/optimize/s:390:220/quality:85/plain/";
 export const AVATAR_OPTIMIZE =
