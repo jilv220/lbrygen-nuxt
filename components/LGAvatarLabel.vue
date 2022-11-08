@@ -25,8 +25,8 @@ let optimizedThumbnail = ref("");
 let relativeDT = ref("");
 
 onBeforeMount(() => {
-  if (props.avatar?.value.name) {
-    backupTitle.value = avatar.value.name.split("").join("");
+  if (props.avatar?.name) {
+    backupTitle.value = props.avatar.name.split("").join("");
   }
   if (props.avatar?.value?.thumbnail) {
     optimizedThumbnail.value =
