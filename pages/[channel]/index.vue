@@ -8,7 +8,7 @@ let channelView = router.currentRoute.value.query?.view;
 
 // Default view to content
 if (channelView === undefined) {
-  router.push({
+  router.replace({
     path: router.currentRoute.value.path,
     query: { view: "content" },
   });

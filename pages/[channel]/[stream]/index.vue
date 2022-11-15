@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import random from "lodash-es/random";
 import plyrHelper from "@/libs/plyrHelper";
+import Logger from "@/utils/Logger";
 
 import {
   LBRY_PREFIX,
@@ -12,11 +13,19 @@ import { resolveClaimSingle, getStreamByUrl, getContent } from "@/apis/api";
 import { MaybePlyr, MaybeTimer } from "@/types/StreamTypes";
 import { linkify } from "@/utils/ReUtils";
 import { parseLBRYURL } from "@/utils/StringUtils";
+import { NOCHANNEL } from "~~/constants/strings";
 
 // Re-create the URL
 const router = useRouter();
 const params = router.currentRoute.value.params;
-let claimUrl = LBRY_PREFIX + params.channel + "/" + params.stream;
+
+const logger = new Logger("stream");
+logger.log(params);
+
+const malformedURL = LBRY_PREFIX + params.stream;
+const normalURL = LBRY_PREFIX + params.channel + "/" + params.stream;
+
+let claimUrl = params.channel === NOCHANNEL ? malformedURL : normalURL;
 
 let player: MaybePlyr = undefined;
 let polling: MaybeTimer = undefined;
