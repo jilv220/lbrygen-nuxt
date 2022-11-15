@@ -49,22 +49,3 @@ onBeforeMount(async () => {
     </div>
   </div>
 </template>
-
-<style lang="scss">
-#card-avatar-label .flex .flex {
-  .avatar {
-    width: 2.1rem;
-    height: 2.1rem;
-    cursor: pointer;
-  }
-  #channel-title {
-    cursor: pointer;
-  }
-}
-.label > span {
-  svg {
-    height: 16px;
-    width: 16px;
-  }
-}
-</style>
